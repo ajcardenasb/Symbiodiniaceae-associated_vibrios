@@ -2,7 +2,7 @@
 
 This repository contains the scripts used to analyze data and create figures for the manuscript "Vibrio spp. maintain close spatial association with the coral endosymbiotic algae in healthy corals"
 
-Raw sequencing data are deposited in the NCBI Sequence Read Archive (SRA) under BioProject [[PRJNA1265228]([https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1265228] 
+Raw sequencing data are deposited in the NCBI Sequence Read Archive (SRA) under BioProject [PRJNA1265228](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1265228)
 
 ## Workflow
 
