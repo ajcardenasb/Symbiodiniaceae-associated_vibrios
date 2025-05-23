@@ -10,7 +10,7 @@ Raw sequencing data are deposited in the NCBI Sequence Read Archive (SRA) under 
 1. Amplicon Sequence variance (ASV) were inferred using [dada2](https://github.com/benjjneb/dada2) using the script `/Symbiodiniaceae-associated_vibrios/ASV_inference.R`
 2. Quality checks (i.e., removal of putatively contaminant ASVs and removal of samples with < 1000 reads) were done using the script `/Symbiodiniaceae-associated_vibrios/QC.R`
 3. The script `/Symbiodiniaceae-associated_vibrios/Alpha_Beta_diversity.R` includes alpha diversity estimates done using [Vegan](https://github.com/vegandevs/vegan), as well as ordination plots to represent beta diversity.
-4. Statistical comparisons of beta diversity using PERMANOVAs were done using the script `/Symbiodiniaceae-associated_vibrios/endoliths_16S_ordination_permanovas.R`
+4. Statistical comparisons of beta diversity using PERMANOVAs were done using the script `/Symbiodiniaceae-associated_vibrios/Beta_diversity_stats.R`
 5. Statistical comparisons of alpha diversity using linear models were done using the script `Alpha_diversity_stats.R`
 6. Bar plots of most abundant bacterial taxa were created using the script`/Symbiodiniaceae-associated_vibrios/endoliths_16S_barplots.R`
 7.  Differentially abundance analysis was done using [ANCOMBC](https://github.com/FrederickHuangLin/ANCOMBC) following the script `/Symbiodiniaceae-associated_vibrios/endoliths_16S_ANCOMBC.R`
