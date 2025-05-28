@@ -17,6 +17,12 @@ map=read.table("Inputs/FractionationOptimization_metafileV3.txt", header = TRUE,
 map$Template <- paste(map$NucleicAcid,map$SampleType, sep="-")
 map$Method <- paste(map$Protocol,map$Fraction,sep="-")
 
+tax$Phylum=ifelse(is.na(tax$Phylum), paste("Unclassified ",tax$Kingdom, sep = ""), as.character(tax$Phylum) )
+tax$Class=ifelse(is.na(tax$Class), as.character(tax$Phylum), as.character(tax$Class) )
+tax$Order=ifelse(is.na(tax$Order), as.character(tax$Class), as.character(tax$Order) )
+tax$Family=ifelse(is.na(tax$Family), as.character(tax$Order), as.character(tax$Family) )
+tax$Genus=ifelse(is.na(tax$Genus), as.character(tax$Family), as.character(tax$Genus) )
+
 tax$Species=rownames(tax)
 map$Template <- paste(map$NucleicAcid,map$SampleType, sep="-")
 
@@ -25,6 +31,8 @@ sam.t= sample_data(data.frame(map))
 tax.t= tax_table(as.matrix(tax))
 
 phy.all= phyloseq(otu.t, tax.t,  sam.t)
+
+##### ASV level across each treatment group #####
 
 ### DNA-fresh P1
 dna_fre_p1=subset_samples(phy.all, Template == "DNA-Fresh" & !Method == "P2-F2")
@@ -118,3 +126,24 @@ res8_sig$Comparison = "rna_fro_p2"
 ### after completing all comparisons you can merge them into one file
 all=rbind(res1_sig, res2_sig,res3_sig, res4_sig,res5_sig, res6_sig,res7_sig, res8_sig ) 
 #write.table(all, "outputs/ANCOM_final",quote = F, row.names = F)
+
+
+##### ASV level overall #####
+res9=ancombc2(data=phy.all,fix_formula="Fraction",p_adj_method = "fdr", tax_level = "Species")
+res9_df=res9$res
+res9_sig=(res9_df[res9_df[,13]=="TRUE",])[,c(1,3,5,7,9,11)]
+colnames(res9_sig)=c("ASV","LFC","se_LFC","W",	"pval",	"qval")
+res9_sig$Diff_more_abundant=ifelse( res9_sig$W < 0 , "F1", "F2")
+res9_sig$Genus=tax$Genus[match(res9_sig$ASV, rownames(tax))]
+res9_sig$Family=tax$Family[match(res9_sig$ASV, rownames(tax))]
+write.table(res9_sig, "outputs/ANCOM_final_overall_ASV",quote = F, row.names = F)
+
+##### genus level overall #####
+res10=ancombc2(data=phy.all,fix_formula="Fraction",p_adj_method = "fdr", tax_level = "Genus")
+res10_df=res10$res
+res10_sig=(res10_df[res10_df[,13]=="TRUE",])[,c(1,3,5,7,9,11)]
+colnames(res10_sig)=c("ASV","LFC","se_LFC","W",	"pval",	"qval")
+res10_sig$Diff_more_abundant=ifelse( res10_sig$W < 0 , "F1", "F2")
+res10_sig$Genus=tax$Genus[match(res10_sig$ASV, rownames(tax))]
+res10_sig$Family=tax$Family[match(res10_sig$ASV, rownames(tax))]
+write.table(res10_sig, "outputs/ANCOM_final_overall_genus",quote = F, row.names = F)
