@@ -20,9 +20,11 @@ met$label=rownames(met)
 met$Group=paste(met$SampleType, met$NucleicAcid, sep="-")
 met$Group=gsub("FRE", "Fresh", met$Group) 
 met$Group=gsub("FRO", "Frozen", met$Group) 
+met$Group=factor(met$Group, levels = c("Fresh-DNA","Frozen-DNA", "Fresh-RNA", "Frozen-RNA" ))
+
 
 P_fractions=c("#DEBA6F", "#823038")
-P_groups=c("#D3565D", "#ECA1A5", "#2c967e", "#60d5b9")
+P_groups=c( "#ECA1A5", "#D3565D","#60d5b9",  "#2c967e")
 
 ##################### Figure 1A: Ordination plot ######################
 
@@ -54,6 +56,7 @@ long_dist$Protocol1=met$Protocol[match(long_dist$Var1, rownames(met))]
 long_dist$Protocol2=met$Protocol[match(long_dist$Var2, rownames(met))]
 long_dist$Comparison=paste(long_dist$Protocol1, long_dist$Protocol2)
 long_s=subset(long_dist, Fraction1 == "F1" & Fraction2 == "F2" & Group1==Group2 & !Comparison %in% c("Unfractionated Unfractionated", "P1 P2" ,"P2 P1" ) )
+long_s$Group1=factor(long_s$Group1, levels = c("Fresh-DNA","Frozen-DNA", "Fresh-RNA", "Frozen-RNA" ))
 
 dissi_plot=ggplot(long_s, aes(x=Protocol2, y=Distance, fill=Group1)) + 
   geom_boxplot()  +
@@ -72,6 +75,7 @@ alpha$Fraction=met$Fraction[match(rownames(alpha), rownames(met))]
 alpha$Protocol=met$Protocol[match(rownames(alpha), rownames(met))]
 alpha$Protocol=gsub("Unfractionated", "F1", alpha$Protocol)
 alpha$Protocol=factor(alpha$Protocol, levels = c("F1", "P1", "P2"))
+alpha$Group=factor(alpha$Group, levels = c("Fresh-DNA","Frozen-DNA", "Fresh-RNA", "Frozen-RNA" ))
 
 alpha_plot=ggplot(alpha, aes(x=Protocol, y=S.chao1, fill= Fraction)) + 
   geom_boxplot()  + theme_minimal() + theme(legend.position = c(0.05,0.75)) + 
@@ -81,5 +85,3 @@ alpha_plot=ggplot(alpha, aes(x=Protocol, y=S.chao1, fill= Fraction)) +
 pdf("Outputs/fractionation_dissimilaritis_alpha.pdf", height = 4, width = 8, pointsize = 12)
 dissi_plot+alpha_plot + plot_annotation(tag_levels = 'A')
 dev.off()
-
-
