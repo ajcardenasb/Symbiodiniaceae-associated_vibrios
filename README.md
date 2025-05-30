@@ -24,3 +24,4 @@ Raw sequencing data are deposited in the NCBI Sequence Read Archive (SRA) under 
 1. Assembly, ORF prediction and estimation of gene counts were done using the script `/Symbiodiniaceae-associated_vibrios/endoliths_metaG_assembly.sh`
 2. Assess contig length cutoffs to keep for downstream analysis 'ORFs_master_to_taxa_KOs' and `/Symbiodiniaceae-associated_vibrios/Mapping_contigLength_Profiles.R`
 3. Create KO and KEGG module count matrix removing contigs < 500 bp `/Symbiodiniaceae-associated_vibrios/ORF500_to_taxa&KOs.R`
+4. Maximum likelihood tree to compare ASVs and isolated Vibrios was done using the script `/Symbiodiniaceae-associated_vibrios/ML_ASV_genome_tree.R`
