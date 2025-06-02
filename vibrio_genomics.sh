@@ -43,10 +43,8 @@ conda activate /project/Fractionation/anaconda_environments/gtdbtk
 gtdbtk classify_wf --genome_dir ${main_path}/assemblies/  --out_dir ${main_path}/taxonomy/ --extension fasta
 
 ## phylogenomics
-
 conda activate /project/Fractionation/anaconda_environments/gtdbtk
-gtdbtk de_novo_wf --genome_dir /project/Fractionation/data/Fractionation_vibrio/final11/phylogenomics/  --extension fasta --out_dir /project/Fractionation/data/Fractionation_vibrio/final11/phylogenomics/final11_output_de_novo --bacteria --outgroup_taxon g__Photobacterium --taxa_filter g__Vibrio --skip_gtdb_refs --prefix final --custom_taxonomy_file /project/Fractionation/data/Fractionation_vibrio/final11/phylogenomics/tax_list
-
+gtdbtk de_novo_wf --genome_dir /project/Fractionation/data/Fractionation_vibrio/final11/phylogenomics/  --extension fasta --out_dir /project/Fractionation/data/Fractionation_vibrio/final11/phylogenomics/test3 --bacteria --outgroup_taxon g__Photobacterium --skip_gtdb_refs  --custom_taxonomy_file /project/Fractionation/data/Fractionation_vibrio/final11/phylogenomics/tax_list
 
 ## annotation
 conda activate /project/Fractionation/anaconda_environments/prokka
