@@ -22,3 +22,4 @@ Raw sequencing data are deposited in the NCBI Sequence Read Archive (SRA) under 
 ### Vibrio genomics
 #### Assembly, ORF prediction, gene quantification and annotation.
 1. Genome assembly, assesment, taxonomy placement, phylogenomic analysis, and annotation were done using the script `/Symbiodiniaceae-associated_vibrios/Create vibrio_genomics.sh.`
+2. Genome stats were represented usign the script `/Symbiodiniaceae-associated_vibrios/genome_stats.R`
