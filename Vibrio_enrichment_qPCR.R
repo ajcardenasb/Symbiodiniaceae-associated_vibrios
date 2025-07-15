@@ -53,6 +53,7 @@ final_m$FoldChange_AlgaeCoral=2^(-final_m$Delta_AlgaeCoral) #Calculate ΔCt for 
 final_m$Delta_Vibrios=final_m$vibrio-final_m$bacteria
 final_m$FoldChange_Vibrios=2^(-final_m$Delta_Vibrios) #Calculate ΔCt for each sample
 final_m=final_m[!(final_m$Species == "Mste"), ]
+final_m=final_m[!grepl("^P2", final_m$Replicate), ]
 final_m$Species=factor(final_m$Species, levels = c("Anov", "Spis", "Pdam")) #c("Anov", "Spis", "Pdam", "Mste")
 
 
@@ -101,7 +102,7 @@ C_plot=ggscatter(final_fractionation_long, x = "VibrioEnrichment", y = "AlgalEnr
           conf.int = TRUE,               # Adds confidence interval
           cor.coef = TRUE,               # Adds correlation coefficient
           cor.method = "pearson",        # Method: pearson, spearman, kendall
-          cor.coeff.args = list(label.x = 2.5, label.y = -15)) +  # Adjust label position
+          cor.coeff.args = list(label.x = 2, label.y = -25)) +  # Adjust label position
   xlab("Vibrio Enrichment") +
   ylab("Algal Enrichment") +
   theme_minimal()
