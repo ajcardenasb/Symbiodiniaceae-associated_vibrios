@@ -105,8 +105,8 @@ C_plot=ggscatter(final_fractionation_long, x = "VibrioEnrichment", y = "AlgalEnr
           cor.coeff.args = list(label.x = 2, label.y = -25)) +  # Adjust label position
   xlab("Vibrio Enrichment") +
   ylab("Algal Enrichment") +
-  theme_minimal()
+  theme_bw()
 
 pdf("../../outputs/qPCT_vibrio_enrichment.pdf", width = 8, height = 3, pointsize = 12)
-A_plot+B_plot+C_plot
+A_plot+B_plot+C_plot + plot_annotation(tag_levels = 'A')
 dev.off()
