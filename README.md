@@ -17,7 +17,8 @@ Raw sequencing data are deposited in the NCBI Sequence Read Archive (SRA) under 
 8. Results from the differentially abundance analysis were plotted using the script `/Symbiodiniaceae-associated_vibrios/Plotting_ANCOM-BC_results.R`
 
 ### qPCR assessment of algal and Vibrio enrichment
-1. Algal enrichment was calculated usign the script `/Symbiodiniaceae-associated_vibrios/Algal_enrichment_qPCR.R`
+1. Algal enrichment was calculated using the script `/Symbiodiniaceae-associated_vibrios/Algal_enrichment_qPCR.R`
+2. Vibrio enrichment was calculated using the script `/Symbiodiniaceae-associated_vibrios/Vibrio_enrichment_qPCR.R`
 
 ### Vibrio genomics
 #### Assembly, ORF prediction, gene quantification and annotation.
