@@ -94,3 +94,13 @@ cat "$genome_list" | while read -r genome; do
   fi
 done
 
+### comparison between 16S rRNA genomic and ASVs
+
+source activate /project/Fractionation/anaconda_environments/blast
+
+cutadapt -g AGGATTAGATACCCTGGTA -a CRRCACGAGCTGACGAC -o Vibrio_Genomes_trimmed_16S.fasta Vibrio_Genomes_Final11_16S.fasta
+
+makeblastdb -in Vibrio_Genomes_trimmed_16S.fasta -dbtype nucl -out isolate_16S_db
+
+blastn -query all_vibriosASV_outgroup.fasta -db isolate_16S_db -out ASV_vs_isolates_besthit.tsv -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" -max_target_seqs 1 -max_hsps 1
+
